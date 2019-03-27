@@ -3,7 +3,7 @@
  */
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
  * @author sergio
@@ -22,9 +25,10 @@ import javax.persistence.Table;
 public class Medicion_Segmental {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_medicion_segmental;	
-	private Date fecha;
-	private double bdporcetanjegrasas;	
+	private int id_medicion_segmental;
+	@DateTimeFormat(iso=ISO.DATE)
+	private LocalDate fecha;
+	private double bdporcentajegrasas;	
 	private double bd_musculo;	
 	private double bimusculo;	
 	private double piporcentajegrasas;	
@@ -35,8 +39,8 @@ public class Medicion_Segmental {
 	private double pimusculo;	
 	private double biporcentajegrasas;	
 	@ManyToOne
-	@JoinColumn(name="fkid_paciente_segmental")
-	private Paciente paciente_segmental;
+	@JoinColumn(name="id_paciente")
+	private Paciente paciente;
 	
 	
 	public Medicion_Segmental() {
@@ -48,17 +52,19 @@ public class Medicion_Segmental {
 	public void setId_medicion_segmental(int id_medicion_segmental) {
 		this.id_medicion_segmental = id_medicion_segmental;
 	}
-	public Date getFecha() {
+	
+	
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	public double getBdporcetanjegrasas() {
-		return bdporcetanjegrasas;
+	public double getBdporcentajegrasas() {
+		return bdporcentajegrasas;
 	}
-	public void setBdporcetanjegrasas(double bdporcetanjegrasas) {
-		this.bdporcetanjegrasas = bdporcetanjegrasas;
+	public void setBdporcentajegrasas(double bdporcentajegrasas) {
+		this.bdporcentajegrasas = bdporcentajegrasas;
 	}
 	public double getBd_musculo() {
 		return bd_musculo;
@@ -114,20 +120,21 @@ public class Medicion_Segmental {
 	public void setBiporcentajegrasas(double biporcentajegrasas) {
 		this.biporcentajegrasas = biporcentajegrasas;
 	}
-	public Paciente getPaciente_segmental() {
-		return paciente_segmental;
+	public Paciente getPaciente() {
+		return paciente;
 	}
-	public void setPaciente_segmental(Paciente paciente_segmental) {
-		this.paciente_segmental = paciente_segmental;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 	@Override
 	public String toString() {
 		return "Medicion_Segmental [id_medicion_segmental=" + id_medicion_segmental + ", fecha=" + fecha
-				+ ", bdporcetanjegrasas=" + bdporcetanjegrasas + ", bd_musculo=" + bd_musculo + ", bimusculo="
+				+ ", bdporcentajegrasas=" + bdporcentajegrasas + ", bd_musculo=" + bd_musculo + ", bimusculo="
 				+ bimusculo + ", piporcentajegrasas=" + piporcentajegrasas + ", pdmusculo=" + pdmusculo
 				+ ", pdporcentajegrasas=" + pdporcentajegrasas + ", tporcentajegrasa=" + tporcentajegrasa
 				+ ", tmusculo=" + tmusculo + ", pimusculo=" + pimusculo + ", biporcentajegrasas=" + biporcentajegrasas
-				+ ", paciente_segmental=" + paciente_segmental + "]";
+				+ ", paciente=" + paciente + "]";
 	}
+	
 	
 }

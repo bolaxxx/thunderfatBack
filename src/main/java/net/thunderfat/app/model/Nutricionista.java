@@ -9,37 +9,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="nutricionista")
-public class Nutricionista {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_nutricionista;
+public class Nutricionista extends User {
+	
 	private String nombre;
 	private String apellidos;
 	private String telefono;
 	private String localidad;
 	private String provincia;
 	private String dni;
-	@OneToMany(mappedBy="nutricionista",fetch=FetchType.EAGER)
-		private Set<Paciente> pacientes;
-//	@OneToMany(mappedBy="nutricionista_citado",fetch=FetchType.EAGER)
+	private String direccion;
+//	@OneToMany(mappedBy="nutricionista",fetch=FetchType.EAGER)
+//		private Set<Paciente> pacientes;
+//	@Transient
+//	@OneToMany(mappedBy="nutricionista",fetch=FetchType.EAGER)
 //	private Set<Cita> citas;
-	@OneToMany(mappedBy="nutricionista",fetch=FetchType.EAGER)
-	private Set<PlanDieta> planesdietas;
-	@OneToMany(mappedBy="nutricionnista")
-	private Set<FiltroAlimentario>filtros;
-	
+//	@OneToMany(mappedBy="nutricionista",fetch=FetchType.EAGER)
+//	private Set<PlanDieta> planesdietas;
+//	@OneToMany(mappedBy="nutricionnista")
+//	private Set<FiltroAlimentario>filtros;
+//	
 	public Nutricionista() {
 		super();
 	}
-	public int getId_nutricionista() {
-		return id_nutricionista;
-	}
-	public void setId_nutricionista(int id_nutricionista) {
-		this.id_nutricionista = id_nutricionista;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,12 +72,51 @@ public class Nutricionista {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+//	public Set<Paciente> getPacientes() {
+//		return pacientes;
+//	}
+//	public void setPacientes(Set<Paciente> pacientes) {
+//		this.pacientes = pacientes;
+//	}
+//	public Set<Cita> getCitas() {
+//		return citas;
+//	}
+//	public void setCitas(Set<Cita> citas) {
+//		this.citas = citas;
+//	}
+//	public Set<PlanDieta> getPlanesdietas() {
+//		return planesdietas;
+//	}
+//	public void setPlanesdietas(Set<PlanDieta> planesdietas) {
+//		this.planesdietas = planesdietas;
+//	}
+//	public Set<FiltroAlimentario> getFiltros() {
+//		return filtros;
+//	}
+//	public void setFiltros(Set<FiltroAlimentario> filtros) {
+//		this.filtros = filtros;
+//	}
+//	@Override
+//	public String toString() {
+//		return "Nutricionista [id_nutricionista=" + id_nutricionista + ", nombre=" + nombre + ", apellidos=" + apellidos
+//				+ ", telefono=" + telefono + ", localidad=" + localidad + ", provincia=" + provincia + ", dni=" + dni
+//				+ "]";
+//	}
+//	
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	@Override
 	public String toString() {
-		return "Nutricionista [id_nutricionista=" + id_nutricionista + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", telefono=" + telefono + ", localidad=" + localidad + ", provincia=" + provincia + ", dni=" + dni
-				+ ", pacientes=" + pacientes + ", planesdietas=" + planesdietas + ", filtros=" + filtros + "]";
+		return "Nutricionista [nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
+				+ ", localidad=" + localidad + ", provincia=" + provincia + ", dni=" + dni + ", direccion=" + direccion
+				+ ", getEmail()=" + getEmail() + ", getId_usuario()=" + getId_usuario() + "]";
 	}
+	
 	
 	
 

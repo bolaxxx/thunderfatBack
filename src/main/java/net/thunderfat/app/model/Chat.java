@@ -1,6 +1,5 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,14 +17,14 @@ public class Chat {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_chat;
 	@ManyToOne 
-	@JoinColumn(name="id_origen")
-	private User id_origen;
+	@JoinColumn(name="paciente")
+	private Paciente paciente;
 	@ManyToOne
-	@JoinColumn (name ="id_destino")
-	private User id_destino;
+	@JoinColumn (name ="nutricionista")
+	private Nutricionista nutricionista;
 	
-	private Date fecha;	
-	private String status;
+
+	
 	@OneToMany(mappedBy="id_chat")	
 	private List<Mensaje> mensajes;
 	public Chat() {
@@ -37,29 +36,19 @@ public class Chat {
 	public void setId_chat(int id_chat) {
 		this.id_chat = id_chat;
 	}
-	public User getId_origen() {
-		return id_origen;
+	
+	
+	public Paciente getPaciente() {
+		return paciente;
 	}
-	public void setId_origen(User id_origen) {
-		this.id_origen = id_origen;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
-	public User getId_destino() {
-		return id_destino;
+	public Nutricionista getNutricionista() {
+		return nutricionista;
 	}
-	public void setId_destino(User id_destino) {
-		this.id_destino = id_destino;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setNutricionista(Nutricionista nutricionista) {
+		this.nutricionista = nutricionista;
 	}
 	public List<Mensaje> getMensajes() {
 		return mensajes;
@@ -69,9 +58,9 @@ public class Chat {
 	}
 	@Override
 	public String toString() {
-		return "Chat [id_chat=" + id_chat + ", id_origen=" + id_origen + ", id_destino=" + id_destino + ", fecha="
-				+ fecha + ", status=" + status + ", mensajes=" + mensajes + "]";
+		return "Chat [id_chat=" + id_chat + ", paciente=" + paciente + ", nutricionista=" + nutricionista
+				+ ", mensajes=" + mensajes + "]";
 	}
 	
-
+	
 }

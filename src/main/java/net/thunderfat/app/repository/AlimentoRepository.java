@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import net.thunderfat.app.model.Alimento;
 @Repository 
 public interface AlimentoRepository extends JpaRepository<Alimento, Integer> {
-
+			
 }

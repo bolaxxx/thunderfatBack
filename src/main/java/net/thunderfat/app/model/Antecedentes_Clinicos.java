@@ -1,6 +1,6 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +10,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "antecedentes_clinicos")
 public class Antecedentes_Clinicos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_antecedentes_clinicos;
-	private Date fecha;
+	@DateTimeFormat(iso=ISO.DATE)
+	private LocalDate fecha;
 	private String antecedente_clinico;
 	private String observacion;
 	@ManyToOne
-	@JoinColumn(name = "fkid_paciente")
-	private Paciente id_paciente;
+	@JoinColumn(name = "id_paciente")
+	private Paciente paciente;
 
 	public Antecedentes_Clinicos() {
 		super();
@@ -35,11 +39,13 @@ public class Antecedentes_Clinicos {
 		this.id_antecedentes_clinicos = id_antecedentes_clinicos;
 	}
 
-	public Date getFecha() {
+	
+
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
@@ -59,20 +65,22 @@ public class Antecedentes_Clinicos {
 		this.observacion = observacion;
 	}
 
-	public Paciente getId_paciente() {
-		return id_paciente;
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setId_paciente(Paciente id_paciente) {
-		this.id_paciente = id_paciente;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	@Override
 	public String toString() {
 		return "Antecedentes_Clinicos [id_antecedentes_clinicos=" + id_antecedentes_clinicos + ", fecha=" + fecha
-				+ ", antecedente_clinico=" + antecedente_clinico + ", observacion=" + observacion + ", id_paciente="
-				+ id_paciente + "]";
+				+ ", antecedente_clinico=" + antecedente_clinico + ", observacion=" + observacion + ", paciente="
+				+ paciente + "]";
 	}
+
+	
 
 	
 

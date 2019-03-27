@@ -1,6 +1,6 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name="mensaje")
 public class Mensaje {
@@ -20,14 +23,12 @@ public class Mensaje {
 	private Chat id_chat;
 	
 	private String contenido;
-	
-	private Date timestamp;
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private LocalDateTime timestamp;
 	@ManyToOne
 	@JoinColumn(name="id_emisor")
 	private User id_emisor	;
-	@ManyToOne 
-	@JoinColumn(name="id_receptor")
-	private User id_receptor;
+	
 	public Mensaje() {
 		super();
 	}
@@ -49,29 +50,25 @@ public class Mensaje {
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-	public Date getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
+
 	public User getId_emisor() {
 		return id_emisor;
 	}
 	public void setId_emisor(User id_emisor) {
 		this.id_emisor = id_emisor;
 	}
-	public User getId_receptor() {
-		return id_receptor;
+	public LocalDateTime getTimestamp() {
+		return timestamp;
 	}
-	public void setId_receptor(User id_receptor) {
-		this.id_receptor = id_receptor;
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
 	@Override
 	public String toString() {
 		return "Mensaje [id_mensaje=" + id_mensaje + ", id_chat=" + id_chat + ", contenido=" + contenido
-				+ ", timestamp=" + timestamp + ", id_emisor=" + id_emisor + ", id_receptor=" + id_receptor + "]";
+				+ ", timestamp=" + timestamp + ", id_emisor=" + id_emisor + "]";
 	}
+	
 	
 	
 

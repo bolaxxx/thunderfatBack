@@ -1,6 +1,6 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name="medicion_general")
 public class Medicion_General {
@@ -17,7 +20,8 @@ public class Medicion_General {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_medicion_general;
-	private Date fecha;
+	@DateTimeFormat(iso=ISO.DATE)
+	private LocalDate fecha;
 	private double peso_ideal;
 	private double peso_actual;
 	private double brazo;
@@ -29,7 +33,7 @@ public class Medicion_General {
 	private double cadera;
 	private double cintura;
 	@ManyToOne
-	@JoinColumn(name="fkidpaciente")
+	@JoinColumn(name="id_paciente")
 	private Paciente paciente;
 	public Medicion_General() {
 		super();
@@ -40,10 +44,11 @@ public class Medicion_General {
 	public void setId_medicion_general(int id_medicion_general) {
 		this.id_medicion_general = id_medicion_general;
 	}
-	public Date getFecha() {
+	
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public double getPeso_ideal() {

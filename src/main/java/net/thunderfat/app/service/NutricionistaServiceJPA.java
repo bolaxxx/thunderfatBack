@@ -20,7 +20,10 @@ public class NutricionistaServiceJPA implements INutricionistaService {
 	}
 
 	public Nutricionista buscarPorId(int id_nutricionista) {
+		Optional<Nutricionista>op=repoNutricionista.findById(id_nutricionista);
 		// TODO Auto-generated method stub
+		if(op.isPresent())
+			return op.get();
 		return null;
 	}
 
@@ -29,5 +32,23 @@ public class NutricionistaServiceJPA implements INutricionistaService {
 		
 	}
 
+	@Override
+	public List<String> buscarProvincias() {
+		List <String>provincias= repoNutricionista.findDistinctProvincia();
+		return provincias;
+	}
+
+	@Override
+	public List<String> buscarLocalidadesporProvincia(String provincia) {
+		List<String>localidades=repoNutricionista.findDistinctLocalidadByProvincia(provincia);
+		return localidades;
+	}
+
+	@Override
+	public List<Nutricionista> listarNutricionistaporlocalidad(String localidad) {
+		List<Nutricionista>nutricionistas=repoNutricionista.findByLocalidad(localidad);
+		return nutricionistas;
+	}
+	
 
 }

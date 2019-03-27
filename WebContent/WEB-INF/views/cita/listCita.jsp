@@ -39,16 +39,12 @@
 
 <div class="container theme-showcase" role="main">
 
-		<h3>Listado de Pacientes</h3>
+		<h3>Listado de Citas</h3>
       
-        <c:if test="${msg !=null }">        
-        		<div class='alert alert-success' role='alert'>${msg}</div>
-        </c:if> 
+        
       
-        <spring:url value="/cita/edit" var="urlEdit" />
-        <spring:url value="/cita/delete" var="urlDelete" />
-        <spring:url value="/cita/create" var="urlCreate" />
-        <a href="${urlCreate}" class="btn btn-success" role="button" title="Nuevo cita" >Nuevo</a><br><br>        
+       
+             
       
         <div class="table-responsive">	
 	        <table class="table table-hover table-striped table-bordered">
@@ -56,12 +52,14 @@
 					<th>Nombre</th>
 					<th>Apellidos</th>
 					<th>Fecha</th>
+					<th>Telefono</th>
 					</tr>
 					<c:forEach var=cita items =${citas}>
 					<tr>
-<%-- 					<th>${cita.paciente.nombre}</th> --%>
-<%-- 					<th>${cita.paciente.apellidos}</th> --%>
-					<th>${cita.fecha}</th>
+					<th>${cita.nutricionista.nombre}</th>
+					<th>${cita.nutricionista.apellidos}</th>
+					<th>${cita.fecha_ini}</th>
+					<th>${cita.nutricionista.telefono}
 					<th></th>
 					</tr>
 					

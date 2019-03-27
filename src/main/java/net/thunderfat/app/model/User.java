@@ -1,60 +1,70 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-@Entity
-@Table(name="user")
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+@Entity
+@Table(name="usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-	
-	private String username;
-	private String email;
-	private String password;
-	private Date create_time	;
+
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_usuario;
+	private String email;
+	private String psw;
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private LocalDateTime createtime	;
+	
 	public User() {
 		super();
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getPsw() {
+		return psw;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setPsw(String psw) {
+		this.psw = psw;
 	}
-	public Date getCreate_time() {
-		return create_time;
+
+	public LocalDateTime getCreatetime() {
+		return createtime;
 	}
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+
+	public void setCreatetime(LocalDateTime createtime) {
+		this.createtime = createtime;
 	}
+
 	public int getId_usuario() {
 		return id_usuario;
 	}
+
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
 	}
+
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", email=" + email + ", password=" + password + ", create_time="
-				+ create_time + ", id_usuario=" + id_usuario + "]";
+		return "User [email=" + email + ", psw=" + psw + ", createtime=" + createtime + ", id_usuario=" + id_usuario
+				+ "]";
 	}
 
 }

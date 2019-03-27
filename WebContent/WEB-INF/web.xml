@@ -12,8 +12,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<!-- <url-pattern>*.html</url-pattern> -->
@@ -25,11 +25,23 @@
 	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml,/WEB-INF/spring/security.xml</param-value>
+		<!-- /WEB-INF/spring/security.xml
+ -->
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+ 	<!-- Spring Security Filter --> 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

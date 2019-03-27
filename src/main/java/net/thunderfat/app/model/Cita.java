@@ -1,6 +1,6 @@
 package net.thunderfat.app.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,20 +9,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity 
-@Table(name="/cita")
+@Table(name="cita")
 public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCita;
+	private int id_cita;
 	@ManyToOne
 	@JoinColumn(name="id_paciente")
 	private Paciente	paciente;
 	@ManyToOne
 	@JoinColumn(name = "id_nutricionista")
-	private Nutricionista nutricionista_citado;
-	private Date fecha;
-	private String hora;
+	private Nutricionista nutricionista;
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private LocalDateTime fecha_ini;
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private LocalDateTime fecha_fin;
 	
 
 	
@@ -32,15 +37,7 @@ public class Cita {
 
 
 
-	public int getIdCita() {
-		return idCita;
-	}
 
-
-
-	public void setIdCita(int idCita) {
-		this.idCita = idCita;
-	}
 
 
 
@@ -56,47 +53,106 @@ public class Cita {
 
 
 
-	public Nutricionista getNutricionista_citado() {
-		return nutricionista_citado;
+	
+
+
+
+	
+
+
+
+	public Nutricionista getNutricionista() {
+		return nutricionista;
 	}
 
 
 
-	public void setNutricionista_citado(Nutricionista nutricionista_citado) {
-		this.nutricionista_citado = nutricionista_citado;
+	public void setNutricionista(Nutricionista nutricionista) {
+		this.nutricionista = nutricionista;
 	}
 
 
 
-	public Date getFecha() {
-		return fecha;
+
+
+
+
+
+
+	public LocalDateTime getFecha_ini() {
+		return fecha_ini;
 	}
 
 
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+
+
+
+
+	public void setFecha_ini(LocalDateTime fecha_ini) {
+		this.fecha_ini = fecha_ini;
 	}
 
 
 
-	public String getHora() {
-		return hora;
+
+
+
+
+	public LocalDateTime getFecha_fin() {
+		return fecha_fin;
 	}
 
 
 
-	public void setHora(String hora) {
-		this.hora = hora;
+
+
+
+
+	public void setFecha_fin(LocalDateTime fecha_fin) {
+		this.fecha_fin = fecha_fin;
 	}
+
+
+
+
+
+
+
+	public int getId_cita() {
+		return id_cita;
+	}
+
+
+
+
+
+
+
+	public void setId_cita(int id_cita) {
+		this.id_cita = id_cita;
+	}
+
+
+
+
 
 
 
 	@Override
 	public String toString() {
-		return "Cita [idCita=" + idCita + ", paciente=" + paciente + ", nutricionista_citado=" + nutricionista_citado
-				+ ", fecha=" + fecha + ", hora=" + hora + "]";
+		return "Cita [id_cita=" + id_cita + ", paciente=" + paciente + ", nutricionista=" + nutricionista
+				+ ", fecha_ini=" + fecha_ini + ", fecha_fin=" + fecha_fin + "]";
 	}
+
+
+
+	
+
+
+	
+
+
 	
 	
 }

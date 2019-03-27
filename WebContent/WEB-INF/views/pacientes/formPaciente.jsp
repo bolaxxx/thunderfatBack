@@ -44,92 +44,113 @@
 	<div class="container theme-showcase" role="main">
 
 		<h3 class="blog-title">
-			<span class="label label-success">Datos del Alimento</span>
+			<span class="label label-success">Datos del Paciente</span>
 		</h3>
 
 		<form:form action="${urlForm}" method="POST" modelAttribute="paciente">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label for="nombre">Nombre</label>
-						<form:hidden path="id_paciente" />
-						<form:input class="form-control" path="nombre" id="nombre"
-							required="required" />
+			<div class="form-row">
+				<div class="form-group col-md-6">
 
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="apellidos">Apellidos</label>
-								<form:input class="from-control" path="apellidos" id="apellidos"
-									required="required" />
-							</div>
-						</div>
+					<label for="nombre">Nombre</label>
+					<form:hidden path="id_usuario" />
+					<form:hidden path="nutricionista.id_usuario"
+						value="${nutricionista}" />
+					<form:input class="form-control" path="nombre" id="nombre"
+						required="required" placeholder="Nombre" />
+				</div>
+				<div class="form-group col-md-6">
 
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="fechanacimiento">Fecha Nacimiento</label>
-								<form:input type="text" class="from-control"
-									path="fechanacimiento" id="fechanacimiento" required="required" />
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="direccion">Direccion</label>
-							<form:input class="from-control" path="direccion" id="direccion"
-								required="required" />
-						</div>
-					</div>
-
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="localidad">Localidad</label>
-							<form:input class="from-control" path="localidad" id="localidad"
-								required="required" />
-						</div>
-					</div>
-
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="codigopostal">Codigo Postal</label>
-							<form:input class="from-control" path="codigopostal"
-								id="codigopostal" required="required" />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="provincia">Provincia </label>
-							<form:input class="from-control" path="provincia" id="provincia"
-								required="required" />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="dni">DNI </label>
-							<form:input class="from-control" path="dni" id="dni"
-								required="required" />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="altura">Altura</label>
-							<form:input class="from-control" path="altura" id="altura"
-								required="required" />
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="telefono">Telefono</label>
-							<form:input class="from-control" path="telefono" id="telofono"
-								required="required" />
-						</div>
-					</div>
-
-
+					<label for="apellidos">Apellidos</label>
+					<form:input class="form-control" path="apellidos" id="apellidos"
+						required="required" placeholder="Apellidos"/>
 				</div>
 			</div>
 
-			<div class="row"></div>
-			<button type="submit" class="btn btn-danger">Guardar</button>
+			<div class="form-group">
+				<label for="direccion">Direccion</label>
+				<form:input class="form-control" path="direccion" id="direccion"
+					required="required" placeholder="Direccion" />
+			</div>
+
+			<div class="form-row">
+
+				<div class="form-group col-md-6">
+					<label for="localidad">Localidad</label>
+					<form:input class="form-control" path="localidad" id="localidad"
+						required="required" placeholder="Localidad"/>
+				</div>
+
+
+				<div class="form-group col-md-4">
+					<label for="provincia">Provincia </label>
+					<form:input class="form-control" path="provincia" id="provincia"
+						required="required" placeholder="Provincia" />
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="codigopostal">Codigo Postal</label>
+					<form:input class="form-control" path="codigopostal"
+						id="codigopostal" required="required" placeholder="Codigo Postal"/>
+				</div>
+			</div>
+
+
+
+			<div class="form-row">
+
+				<div class="form-group col-md-4">
+					<label for="fechanacimiento">Fecha Nacimiento</label>
+					<form:input type="date" class="form-control" path="fechanacimiento"
+						id="fechanacimiento" required="required" />
+				</div>
+				<div class="form-group col-md-4">
+					<label for="dni">DNI </label>
+					<form:input class="form-control" path="dni" id="dni"
+						required="required" placeholder="DNI" />
+				</div>
+				<div class="form-group col-md-4">
+					<label for="email">Email</label>
+					<form:input path="email" id="email" class="form-control"
+						required="required" placeholder="Email"/>
+				</div>
+
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="altura">Altura</label>
+					<form:input class="form-control" path="altura" id="altura"
+						required="required" type="number" min="0.01"  step="0.01" placeholder="Altura en Metros"/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="telefono">Telefono</label>
+					<form:input class="form-control" path="telefono" id="telofono"
+						required="required" placeholder="Telefono de contacto"/>
+				</div>
+				</div>
+				<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="sexo">Sexo</label>
+
+					<div class="form-check form-check">
+						<form:radiobutton path="sexo" value="hombre" class="form-check-input"/>
+						<label class="form-check-label" for="sexo">Hombre</label>
+					</div>
+					<div class="form-check form-check">
+						<form:radiobutton path="sexo" value="mujer" class="form-check-input" />
+						<label class="form-check-label" for="sexo">Mujer</label>
+						
+						<!-- 			<label for="sexo">Sexo</label> -->
+						<!-- 			<div class="row"> -->
+						<%-- 				<a>Hombre <form:radiobutton path="sexo" value="hombre" /></a><br> --%>
+						<%-- 				<a>Mujer<form:radiobutton path="sexo" value="mujer" /></a> --%>
+						<!-- 			</div> -->
+					</div>
+				</div>
+
+
+	</div>
+				<div class="row"></div>
+				<button type="submit" class="btn btn-danger">Guardar</button>
 		</form:form>
 
 		<hr class="featurette-divider">

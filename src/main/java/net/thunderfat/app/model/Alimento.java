@@ -1,13 +1,9 @@
 package net.thunderfat.app.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="alimento")
@@ -45,8 +41,7 @@ public class Alimento {
 	private double tri;	
 	private double fen	;
 	private double val;
-	@OneToMany(mappedBy="alimento",fetch=FetchType.EAGER)	
-	private List<Receta> receta;
+	
 	
 	public Alimento() {
 		super();
@@ -241,12 +236,11 @@ public class Alimento {
 	public void setVal(double val) {
 		this.val = val;
 	}
-	public List<Receta> getReceta() {
-		return receta;
-	}
-	public void setReceta(List<Receta> receta) {
-		this.receta = receta;
-	}
+
+
+	
+
+
 
 	@Override
 	public String toString() {
@@ -257,7 +251,29 @@ public class Alimento {
 				+ ", cobre=" + cobre + ", potasio=" + potasio + ", sodio=" + sodio + ", azufre=" + azufre + ", calcio="
 				+ calcio + ", fosforo=" + fosforo + ", hierro=" + hierro + ", magnesio=" + magnesio + ", cloro=" + cloro
 				+ ", met=" + met + ", lis=" + lis + ", leu=" + leu + ", illeu=" + illeu + ", tre=" + tre + ", tri="
-				+ tri + ", fen=" + fen + ", val=" + val + ", receta=" + receta + "]";
+				+ tri + ", fen=" + fen + ", val=" + val + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_alimento;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alimento other = (Alimento) obj;
+		if (id_alimento != other.id_alimento)
+			return false;
+		return true;
 	}
 
 	

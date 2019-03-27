@@ -9,5 +9,7 @@ public interface INutricionistaService {
 	List <Nutricionista> listarNutricionista();
 	Nutricionista buscarPorId(int id_nutricionista);
 	void eliminar(Nutricionista nutricionista);
-	
+	List <String>buscarProvincias();
+	List <String>buscarLocalidadesporProvincia(String provincia);
+	List<Nutricionista>listarNutricionistaporlocalidad(String localidad);
 }
